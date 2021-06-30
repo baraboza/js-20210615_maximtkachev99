@@ -8,11 +8,12 @@ export function createGetter(path) {
   let index = 0;
 
   const getter = function (obj) {
-    if (index === pathArr.length - 1 || obj[pathArr[index]] === undefined) {
-      return obj[pathArr[index]];
+    const tmp = obj[pathArr[index]];
+    if (index === pathArr.length - 1 || tmp === undefined) {
+      return tmp;
     } else {
       index++;
-      return getter(obj[pathArr[index - 1]]);
+      return getter(tmp);
     }
   };
 
